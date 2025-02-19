@@ -7,6 +7,18 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      routes:
+        - id: hello
+          uri: lb://eureka-client
+          predicates:
+            - Method=GET
+            - Path=/main/hello
+
+        - id: testHello
+          uri: lb://eureka-client-1
+          predicates:
+            - Method=GET
+            - Path=/test/hello
 
 server:
   port: 8080
